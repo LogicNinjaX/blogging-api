@@ -1,0 +1,11 @@
+spring:
+  application:
+    name: blogging-api
+
+
+#  MongoDb configs
+  data:
+    mongodb:
+      host: localhost
+      port: 27017
+      database: mongo_ex1
