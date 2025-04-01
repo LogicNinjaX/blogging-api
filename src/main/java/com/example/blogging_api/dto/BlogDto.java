@@ -1,12 +1,17 @@
 package com.example.blogging_api.dto;
 
+import com.example.blogging_api.config.ObjectIdDeserializer;
+import com.example.blogging_api.config.ObjectIdSerializer;
+import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
+import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 import org.bson.types.ObjectId;
-import org.springframework.data.mongodb.core.index.Indexed;
 
 import java.time.LocalDateTime;
 
 public class BlogDto {
 
+    @JsonSerialize(using = ObjectIdSerializer.class)
+    @JsonDeserialize(using = ObjectIdDeserializer.class)
     private ObjectId id;
 
     private String title;
@@ -20,6 +25,7 @@ public class BlogDto {
     private LocalDateTime updatedAt;
 
     private boolean published = false;
+
 
     public ObjectId getId() {
         return id;
