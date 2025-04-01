@@ -6,6 +6,6 @@ spring:
 #  MongoDb configs
   data:
     mongodb:
-      host: localhost
-      port: 27017
-      database: mongo_ex1
+      host: ${mongo-host}
+      port: ${mongo-port}
+      database: ${db-name}
