@@ -1,13 +1,17 @@
 package com.example.blogging_api.entity;
 
 import org.bson.types.ObjectId;
+import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.annotation.Id;
-import org.springframework.data.mongodb.core.index.Indexed;
+import org.springframework.data.annotation.LastModifiedDate;
 import org.springframework.data.mongodb.core.mapping.Document;
+import org.springframework.data.mongodb.core.mapping.Field;
+import org.springframework.data.mongodb.core.mapping.FieldType;
 
 import java.time.LocalDateTime;
+import java.util.UUID;
 
-@Document
+@Document(value = "blog_collection")
 public class Blog {
 
     @Id
@@ -17,14 +21,23 @@ public class Blog {
 
     private String content;
 
-    @Indexed(unique = true)
     private String author;
 
+    @CreatedDate
+    @Field(targetType = FieldType.DATE_TIME)
     private LocalDateTime createdAt;
 
+    @LastModifiedDate
+    @Field(targetType = FieldType.DATE_TIME)
     private LocalDateTime updatedAt;
 
     private boolean published = false;
+
+    public Blog(String title, String content, String author) {
+        this.title = title;
+        this.content = content;
+        this.author = author;
+    }
 
     public ObjectId getId() {
         return id;
