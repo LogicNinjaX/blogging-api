@@ -8,6 +8,7 @@ import com.example.blogging_api.dto.UserRegisterDto;
 import com.example.blogging_api.entity.User;
 import com.example.blogging_api.security.JwtUtil;
 import com.example.blogging_api.service.UserService;
+import jakarta.validation.Valid;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.AuthenticationManager;
@@ -32,7 +33,7 @@ public class UserAuthController {
     }
 
     @PostMapping("/register")
-    public ResponseEntity<ApiResponse<UserDto>> register(@RequestBody UserRegisterDto userRegisterDto){
+    public ResponseEntity<ApiResponse<UserDto>> register(@Valid @RequestBody UserRegisterDto userRegisterDto){
 
         UserDto userDto = userService.saveUser(new User(userRegisterDto.getUsername(),
                 userRegisterDto.getPassword(),
